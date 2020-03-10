@@ -77,17 +77,17 @@ function __freddyfishy_battery
     end
  
     if test "$__fish_nim_prompt_has_acpi"
-		if [ (acpi -a 2> /dev/null | grep off) ]
-			echo -n '─['
-			set_color -o red
-#			echo -n (acpi -b|cut -d' ' -f 4-)
+        if [ (acpi -a 2> /dev/null | grep off) ]
+            echo -n '─['
+            set_color -o red
+#           echo -n (acpi -b|cut -d' ' -f 4-)
             echo -n "Bat "
             echo -n (acpi -b|cut -d' ' -f 4|cut -d',' -f 1)
-			set_color -o green
+            set_color -o green
 __freddyfishy_closing_divider
-		end
-	end
-	set_color normal
+        end
+    end
+    set_color normal
 end
 function __freddyfishy_jobs
     for job in (jobs)
@@ -104,8 +104,8 @@ function __freddyfishy_jobs
 end
 
 function fish_prompt
-	and set retc green; or set retc red
-	set -g tty
+    and set retc green; or set retc red
+    set -g tty
     tty|grep -q tty; and set tty tty; or set tty pts
     set_color $retc
     # fish git prompt
