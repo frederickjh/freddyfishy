@@ -70,22 +70,32 @@ function __freddyfishy_battery
     # Check if acpi exists
     if not set -q __fish_nim_prompt_has_acpi
         if type -q acpi > /dev/null
-            set -g __fish_nim_prompt_has_acpi ''
+            set -g __fish_nim_prompt_has_acpi 1
         else
             set -g __fish_nim_prompt_has_acpi '' # empty string
         end
     end
- 
+if [ "$theme_powerline_fonts" = "no" ]
+    set __freddyfishy_battery 'Bat '
+else 
+    set __freddyfishy_battery " "
+end
     if test "$__fish_nim_prompt_has_acpi"
         if [ (acpi -a 2> /dev/null | grep off) ]
             echo -n '─['
             set_color -o red
-#           echo -n (acpi -b|cut -d' ' -f 4-)
-            echo -n "Bat "
+            echo -ns $__freddyfishy_battery
             echo -n (acpi -b|cut -d' ' -f 4|cut -d',' -f 1)
             set_color -o green
-__freddyfishy_closing_divider
+        else if [ (acpi -a 2> /dev/null | grep on) ]
+            if [ ! (acpi -b 2> /dev/null | grep Full) ]
+                echo -n '─['
+                echo -ns $__freddyfishy_battery
+                echo -n (acpi -b|cut -d' ' -f 4|cut -d',' -f 1)
+                set_color -o green
+            end
         end
+        __freddyfishy_closing_divider
     end
     set_color normal
 end
