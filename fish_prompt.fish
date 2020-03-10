@@ -66,39 +66,6 @@ function __freddyfishy_pwd
     echo -n :(pwd|sed "s=$HOME=~=")
     set_color normal
 end
-function __freddyfishy_battery
-    # Check if acpi exists
-    if not set -q __fish_nim_prompt_has_acpi
-        if type -q acpi > /dev/null
-            set -g __fish_nim_prompt_has_acpi 1
-        else
-            set -g __fish_nim_prompt_has_acpi '' # empty string
-        end
-    end
-if [ "$theme_powerline_fonts" = "no" ]
-    set __freddyfishy_battery 'Bat '
-else 
-    set __freddyfishy_battery " "
-end
-    if test "$__fish_nim_prompt_has_acpi"
-        if [ (acpi -a 2> /dev/null | grep off) ]
-            echo -n '─['
-            set_color -o red
-            echo -ns $__freddyfishy_battery
-            echo -n (acpi -b|cut -d' ' -f 4|cut -d',' -f 1)
-            set_color -o green
-        else if [ (acpi -a 2> /dev/null | grep on) ]
-            if [ ! (acpi -b 2> /dev/null | grep Full) ]
-                echo -n '─['
-                echo -ns $__freddyfishy_battery
-                echo -n (acpi -b|cut -d' ' -f 4|cut -d',' -f 1)
-                set_color -o green
-            end
-        end
-        __freddyfishy_closing_divider
-    end
-    set_color normal
-end
 function __freddyfishy_jobs
     for job in (jobs)
         set_color $retc
@@ -139,10 +106,6 @@ set -g __fish_git_prompt_char_upstream_behind '↓'
 
 __freddyfishy_line1start
 __freddyfishy_opening_divider
-#__freddyfishy_date
-#    echo -n " "
-#__freddyfishy_time
-#__freddyfishy_middle_divider
 __freddyfishy_user
 __freddyfishy_at
 __freddyfishy_host
@@ -166,8 +129,6 @@ __freddyfishy_closing_divider
 
     set_color normal
     set_color $retc
-  
-#__freddyfishy_battery
     echo
     set_color normal
 __freddyfishy_jobs
