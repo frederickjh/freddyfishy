@@ -33,16 +33,6 @@ function __freddyfishy_at
     echo -n @
     set_color normal
 end
-function __freddyfishy_date
-    set_color -o yellow
-    echo -n (date +%a\ %b\ %e)
-    set_color normal
-end
-function __freddyfishy_time
-    set_color -o white
-    echo -n (date +%H:%M:%S)
-    set_color normal
-end
 function __freddyfishy_user 
     if [ $USER = root ]
         set_color -o red

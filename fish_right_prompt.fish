@@ -1,5 +1,6 @@
 # You can override some default right prompt options in your config.fish:
-#     set -g theme_date_format "+%a %H:%M"
+#     set -g theme_date_format "+%a %b %e %Y"
+#     set -g theme_time_format "+%X %Z"
 
 function __freddyfishy_cmd_duration -S -d 'Show command duration'
   [ "$theme_display_cmd_duration" = "no" ]; and return
@@ -45,15 +46,6 @@ function __freddyfishy_pretty_ms -S -a ms interval -d 'Millisecond formatting fo
     case \*
       math -s$scale "$ms/$interval_ms" | string replace -r '\\.?0*$' $interval
   end
-end
-
-function __freddyfishy_timestamp -S -d 'Show the current timestamp'
-  [ "$theme_display_date" = "no" ]; and return
-  set -q theme_date_format
-    or set -l theme_date_format "+%c"
-
-  echo -n ' '
-  date $theme_date_format
 end
 
 function __freddyfishy_virtual_host --description "Output the $VIRTUAL_HOST if set."
@@ -132,23 +124,58 @@ function __freddyfishy_battery
     set_color normal
 end
 
+function __freddyfishy_date -S -d 'Show the current date'
+    [ "$theme_display_date" = "no" ]
+    and return
+    set -q theme_date_format
+    or set -l theme_date_format "+%a %b %e %Y"
+    set_color -o yellow
+    echo -n (date $theme_date_format)
+    set_color normal
+end
+
+function __freddyfishy_time -S -d 'Show the current time'
+    [ "$theme_display_time" = "no" ]
+    and return
+    set -q theme_time_format
+    or set -l theme_time_format "+%X %Z"
+    set_color -o white
+    echo -n (date $theme_time_format)
+    set_color normal
+end
+
 function fish_right_prompt -d 'freddyfishy is all about the right prompt'
   set -l __freddyfishy_left_arrow_glyph \uE0B3
   if [ "$theme_powerline_fonts" = "no" ]
     set __freddyfishy_left_arrow_glyph '<'
   end
-
   set_color $fish_color_autosuggestion
-
   __freddyfishy_cmd_duration
-#  __freddyfishy_timestamp
-__freddyfishy_virtual_host
-echo " "
-__freddyfishy_opening_divider
-__freddyfishy_date
-echo " "
-__freddyfishy_time
-__freddyfishy_closing_divider
+  __freddyfishy_virtual_host
+
+  # Time and Date Display
+  if not set -q theme_display_date
+    set theme_display_date yes
+  end
+  if not set -q theme_display_time
+    set  theme_display_time yes
+  end
+  echo " "
+  if [ "$theme_display_date" = "yes" -o "$theme_display_time" = "yes" ]
+    __freddyfishy_opening_divider
+    if [ "$theme_display_date" = "yes" ]
+    __freddyfishy_date
+    end
+    if [ "$theme_display_date" = "yes" -a "$theme_display_time" = "yes" ]
+      echo " "
+    end
+    if [ "$theme_display_time" = "yes" ]
+
+      __freddyfishy_time
+    end
+    __freddyfishy_closing_divider
+  end
+
 __freddyfishy_battery
   set_color normal
 end
