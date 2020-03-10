@@ -116,7 +116,7 @@ __freddyfishy_closing_divider
     if test -n "$git_dir"
     parse_git_branch
     
-    printf '%s ' (__fish_git_prompt)
+    printf '%s ' (fish_git_prompt)
       
     end    
     
