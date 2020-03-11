@@ -66,7 +66,7 @@ function __freddyfishy_battery
 
     if test "$__fish_nim_prompt_has_acpi"
       # Is the battery full?
-      acpi -b 2> /dev/null | grep Full &>-
+      acpi -b 2> /dev/null | grep Full &>/dev/null
         set __freddyfishy_battery_is_full $status
       # Does the user always want to see the battery status even when full?
       if not set -q always_display_battery_status
