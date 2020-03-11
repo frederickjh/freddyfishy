@@ -70,9 +70,10 @@ The theme can be configured to your liking. Below is a good start of what to add
      set -g theme_newline_cursor yes
      set -g default_user docker
      set -g theme_display_git_ahead_verbose yes
+     set -g always_display_battery_status no  # Set this to yes to show the battery status even when full and on AC.
      set -g theme_git_worktree_support yes   #Shows git root folder, then git branch / tag / status, then sub-folders in git working tree.
-     set -g theme_date_format "+%a %b %e %Y" # Sets the date format.
-     set -g theme_time_format "+%X %Z"       # Sets the time format.
+     set -g theme_date_format "+%a %b %e %Y" # Sets the date format. Default is: "+%a %b %e %Y"
+     set -g theme_time_format "+%X %Z"       # Sets the time format. Default is: "+%X %Z"
 ```
 
 # License
