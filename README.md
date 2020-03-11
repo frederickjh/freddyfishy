@@ -18,7 +18,7 @@ omf install freddyfishy
 or
 
 ```fish
-fisher add /freddyfishy
+fisher add topdroplabs/freddyfishy
 ```
 You will need a [Powerline-patched font](https://github.com/Lokaltog/powerline-fonts) for the icons to work. Or you can enable the compatibility fallback option to use plain ASCII characters:
 
