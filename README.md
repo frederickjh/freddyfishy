@@ -1,10 +1,10 @@
 <img src="https://cdn.rawgit.com/oh-my-fish/oh-my-fish/e4f1c2e0219a17e2c748b824004c8d0b38055c16/docs/logo.svg" align="left" width="144px" height="144px"/>
 
 #### freddyfishy
-> A theme for [Oh My Fish][omf-link].
+> An [Oh My Fish][omf-link] theme whose name is inspired by my childhood nickname and the Fish shell of course. freddyfishy is a theme that I have borrowed some code from other themes, but have developed other myself. It has been influenced by my work as a Drupal developer and has a Drush integration.
 
 [![MIT License](https://img.shields.io/badge/license-MIT-007EC7.svg?style=flat-square)](/LICENSE)
-[![Fish Shell Version](https://img.shields.io/badge/fish-v2.2.0-007EC7.svg?style=flat-square)](https://fishshell.com)
+[![Fish Shell Version](https://img.shields.io/badge/fish-v3.1.0-007EC7.svg?style=flat-square)](https://fishshell.com)
 [![Oh My Fish Framework](https://img.shields.io/badge/Oh%20My%20Fish-Framework-007EC7.svg?style=flat-square)](https://www.github.com/oh-my-fish/oh-my-fish)
 
 <br/>
@@ -18,15 +18,13 @@ omf install freddyfishy
 or
 
 ```fish
-fisher add frederickjh/freddyfishy
+fisher add /freddyfishy
 ```
-You will need a [Powerline-patched font][patching] for this to work, unless you enable the compatibility fallback option:
+You will need a [Powerline-patched font](https://github.com/Lokaltog/powerline-fonts) for the icons to work. Or you can enable the compatibility fallback option to use plain ASCII characters:
 
     set -g theme_powerline_fonts no
 
-[I recommend picking one of these][fonts]. For more advanced awesome, install a [nerd fonts patched font][nerd-fonts], and enable nerd fonts support:
 
-    set -g theme_nerd_fonts yes
 
 On Ubuntu Powerline fonts can be installed with:
 
@@ -52,9 +50,10 @@ ie. If you run `drush use @mysite` so that all commands will be sent to "@mysite
 * Right prompt
   * time at the end of the last command run
   * run time of the last command
-  * For those working with [Docksal](https://docksal.io) it will show the contents of the $VIRTUAL_HOST variable.
+  * For those working with [Docksal](https://docksal.io) it will show the contents of the `$VIRTUAL_HOST` variable.
 * If the previous command failed the line to the left of the prompt will be red instead of the normal green.
 * The Fish Greetings shows an ASCII art fish and information about the terminal session.
+* Battery status, which is by default shown when not plugged into AC power and not at 100% charge.
 
 ## User Configuration
 
