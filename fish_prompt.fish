@@ -1,6 +1,6 @@
 function __freddyfishy_drush_alias_name
     set -l pid %self
-        if test -f "$TMPDIR/drush-env/drush-drupal-site-$pid"
+    if test -f "$TMPDIR/drush-env/drush-drupal-site-$pid"
         echo (command cat $TMPDIR/drush-env/drush-drupal-site-$pid)
     end
 end
@@ -31,7 +31,7 @@ function __freddyfishy_middle_divider
     else
         echo -n '─'
     end
-        echo -n [
+    echo -n [
     set_color normal
 end
 function __freddyfishy_at
@@ -82,40 +82,36 @@ function fish_prompt
     tty|grep -q tty; and set tty tty; or set tty pts
     set_color $retc
     # fish git prompt
-set -g __fish_git_prompt_show_status 1
-set -g __fish_git_prompt_showupstream "informative"
-set -g __fish_git_prompt_char_upstream_prefix ""
+    set -g __fish_git_prompt_show_status 1
+    set -g __fish_git_prompt_showupstream "informative"
+    set -g __fish_git_prompt_char_upstream_prefix ""
+    set -g __fish_git_prompt_showdirtystate 'yes'
+    set -g __fish_git_prompt_showstashstate 'yes'
+    set -g __fish_git_prompt_showupstream 'yes'
+    set -g __fish_git_prompt_showuntrackedfiles 'yes'
+    set -g __fish_git_prompt_showcolorhints 'yes'
+    set -g __fish_git_prompt_show_informative_status 'yes'
+    set -g __fish_git_prompt_color_branch yellow
+    # Status Chars
+    set -g __fish_git_prompt_char_dirtystate '⚡'
+    set -g __fish_git_prompt_char_stagedstate '→'
+    set -g __fish_git_prompt_char_stashstate '↩'
+    set -g __fish_git_prompt_char_upstream_ahead '↑'
+    set -g __fish_git_prompt_char_upstream_behind '↓'
 
-set -g __fish_git_prompt_showdirtystate 'yes'
-set -g __fish_git_prompt_showstashstate 'yes'
-set -g __fish_git_prompt_showupstream 'yes'
-set -g __fish_git_prompt_showuntrackedfiles 'yes'
-set -g __fish_git_prompt_showcolorhints 'yes'
-set -g __fish_git_prompt_show_informative_status 'yes'
-set -g __fish_git_prompt_color_branch yellow
-# Status Chars
-set -g __fish_git_prompt_char_dirtystate '⚡'
-set -g __fish_git_prompt_char_stagedstate '→'
-set -g __fish_git_prompt_char_stashstate '↩'
-set -g __fish_git_prompt_char_upstream_ahead '↑'
-set -g __fish_git_prompt_char_upstream_behind '↓'
-
-__freddyfishy_line1start
-__freddyfishy_opening_divider
-__freddyfishy_user
-__freddyfishy_at
-__freddyfishy_host
-__freddyfishy_pwd
-__freddyfishy_closing_divider
+    __freddyfishy_line1start
+    __freddyfishy_opening_divider
+    __freddyfishy_user
+    __freddyfishy_at
+    __freddyfishy_host
+    __freddyfishy_pwd
+    __freddyfishy_closing_divider
 
     set -g git_dir (git rev-parse --git-dir 2>&-)
     if test -n "$git_dir"
-    parse_git_branch
-    
-    printf '%s ' (fish_git_prompt)
-      
-    end    
-    
+        parse_git_branch
+        printf '%s ' (fish_git_prompt)
+    end
     if [ (__freddyfishy_drush_alias_name) ]
         set -l drush_alias (__freddyfishy_drush_alias_name)
         set -l drush_info "$drush_alias"
@@ -127,8 +123,7 @@ __freddyfishy_closing_divider
     set_color $retc
     echo
     set_color normal
-__freddyfishy_jobs
-
+    __freddyfishy_jobs
     set_color $retc
     if [ $tty = tty ]
         echo -n "'->"
