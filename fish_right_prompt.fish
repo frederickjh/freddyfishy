@@ -152,7 +152,6 @@ function fish_right_prompt -d 'freddyfishy is all about the right prompt'
   set_color $fish_color_autosuggestion
   __freddyfishy_cmd_duration
   __freddyfishy_virtual_host
-
   # Time and Date Display
   if not set -q theme_display_date
     set theme_display_date yes
@@ -164,18 +163,16 @@ function fish_right_prompt -d 'freddyfishy is all about the right prompt'
   if [ "$theme_display_date" = "yes" -o "$theme_display_time" = "yes" ]
     __freddyfishy_opening_divider
     if [ "$theme_display_date" = "yes" ]
-    __freddyfishy_date
+      __freddyfishy_date
     end
     if [ "$theme_display_date" = "yes" -a "$theme_display_time" = "yes" ]
       echo " "
     end
     if [ "$theme_display_time" = "yes" ]
-
       __freddyfishy_time
     end
     __freddyfishy_closing_divider
   end
-
-__freddyfishy_battery
+  __freddyfishy_battery
   set_color normal
 end
