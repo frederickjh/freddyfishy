@@ -1,4 +1,4 @@
-function _freddyfishy_drush_alias_name
+function __freddyfishy_drush_alias_name
     set -l pid %self
         if test -f "$TMPDIR/drush-env/drush-drupal-site-$pid"
         echo (command cat $TMPDIR/drush-env/drush-drupal-site-$pid)
@@ -116,8 +116,8 @@ __freddyfishy_closing_divider
       
     end    
     
-    if [ (_freddyfishy_drush_alias_name) ]
-        set -l drush_alias (_freddyfishy_drush_alias_name)
+    if [ (__freddyfishy_drush_alias_name) ]
+        set -l drush_alias (__freddyfishy_drush_alias_name)
         set -l drush_info "$drush_alias"
         set_color black
         echo -n $drush_info
