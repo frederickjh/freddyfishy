@@ -93,11 +93,11 @@ function fish_prompt
     set -g __fish_git_prompt_show_informative_status 'yes'
     set -g __fish_git_prompt_color_branch yellow
     # Status Chars
-    set -g __fish_git_prompt_char_dirtystate '⚡'
-    set -g __fish_git_prompt_char_stagedstate '→'
-    set -g __fish_git_prompt_char_stashstate '↩'
-    set -g __fish_git_prompt_char_upstream_ahead '↑'
-    set -g __fish_git_prompt_char_upstream_behind '↓'
+    set -g __fish_git_prompt_char_dirtystate \u26A1 #'⚡'
+    set -g __fish_git_prompt_char_stagedstate \u2192 #'→'
+    set -g __fish_git_prompt_char_stashstate \u21A9 #'↩'
+    set -g __fish_git_prompt_char_upstream_ahead \u2191 # '↑'
+    set -g __fish_git_prompt_char_upstream_behind \u2193 #'↓'
 
     __freddyfishy_line1start
     __freddyfishy_opening_divider
