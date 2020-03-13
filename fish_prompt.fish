@@ -1,3 +1,4 @@
+set -g fish_theme freddyfishy
 function __freddyfishy_drush_alias_name
     set -l pid %self
     if test -f "$TMPDIR/drush-env/drush-drupal-site-$pid"
