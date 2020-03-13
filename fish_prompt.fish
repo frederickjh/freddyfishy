@@ -99,6 +99,7 @@ function fish_prompt
     set -g __fish_git_prompt_char_stashstate \u21A9\u200A #'↩'
     set -g __fish_git_prompt_char_upstream_ahead \u2191\u200A # '↑'
     set -g __fish_git_prompt_char_upstream_behind \u2193\u200A #'↓'
+    set -g __fish_git_prompt_char_cleanstate \u2714\u200A #'✔'
 
     __freddyfishy_line1start
     __freddyfishy_opening_divider
