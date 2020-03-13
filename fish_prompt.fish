@@ -5,6 +5,20 @@ function __freddyfishy_drush_alias_name
         echo (command cat $TMPDIR/drush-env/drush-drupal-site-$pid)
     end
 end
+# http://zogovic.com/post/37906589287/showing-git-branch-in-fish-shell-prompt
+# https://gist.github.com/davidmh/721241c7c34f841eed07
+# https://gist.github.com/diezguerra/4737141
+function __freddyfishy_parse_git_branch
+    set fish_git_dirty_color red
+    set fish_git_not_dirty_color green
+  set -g branch (git branch 2>&- | grep -e '\* ' | sed 's/^..\(.*\)/\1/')
+  set -g git_diff (git diff 2>&-)
+  if test -z "$git_diff"
+    echo -n (set_color $fish_git_not_dirty_color)
+  else
+    echo -n (set_color $fish_git_dirty_color)
+      end
+end
 function __freddyfishy_line1start
     if [ $tty = tty ]
         echo -n .-
@@ -112,7 +126,7 @@ function fish_prompt
 
     set -g git_dir (git rev-parse --git-dir 2>&-)
     if test -n "$git_dir"
-        parse_git_branch
+        __freddyfishy_parse_git_branch
         printf '%s ' (fish_git_prompt)
     end
     if [ (__freddyfishy_drush_alias_name) ]
