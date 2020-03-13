@@ -60,7 +60,8 @@ function __freddyfishy_host
 end
 function __freddyfishy_pwd
     set_color -o purple
-    echo -n :(pwd|sed "s=$HOME=~=")
+    printf '%s' (prompt_pwd)
+#    echo -n :(pwd|sed "s=$HOME=~=")
     set_color normal
 end
 function __freddyfishy_jobs
