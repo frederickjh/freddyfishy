@@ -111,12 +111,12 @@ function __freddyfishy_battery
         if test "$theme_powerline_fonts" = "no"
             echo -n '─['
             set_color -o $__freddyfishy_battery_color
-            echo -ns $__freddyfishy_battery
+            echo -n $__freddyfishy_battery
             set_color -o green
             __freddyfishy_closing_divider
         else if test "$theme_powerline_fonts" != "no"
             set_color -o $__freddyfishy_battery_color
-            echo -ns $__freddyfishy_battery
+            echo -n $__freddyfishy_battery
             set_color -o green
         end
       end
