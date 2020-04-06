@@ -109,12 +109,14 @@ function fish_prompt
     set -g __fish_git_prompt_show_informative_status 'yes'
     set -g __fish_git_prompt_color_branch yellow
     # Status Chars
-    set -g __fish_git_prompt_char_dirtystate \u26A1 #'⚡'
-    set -g __fish_git_prompt_char_stagedstate \u2192\u200A #'→'
-    set -g __fish_git_prompt_char_stashstate \u21A9\u200A #'↩'
-    set -g __fish_git_prompt_char_upstream_ahead \u2191\u200A # '↑'
-    set -g __fish_git_prompt_char_upstream_behind \u2193\u200A #'↓'
-    set -g __fish_git_prompt_char_cleanstate \u2714\u200A #'✔'
+    if $theme_powerline_fonts -eq yes
+        set -g __fish_git_prompt_char_dirtystate \u26A1 #'⚡'
+        set -g __fish_git_prompt_char_stagedstate \u2192\u200A #'→'
+        set -g __fish_git_prompt_char_stashstate \u21A9\u200A #'↩'
+        set -g __fish_git_prompt_char_upstream_ahead \u2191\u200A # '↑'
+        set -g __fish_git_prompt_char_upstream_behind \u2193\u200A #'↓'
+        set -g __fish_git_prompt_char_cleanstate \u2714\u200A #'✔'
+    end
 
     __freddyfishy_line1start
     __freddyfishy_opening_divider
