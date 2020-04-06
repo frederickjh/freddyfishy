@@ -109,7 +109,7 @@ function fish_prompt
     set -g __fish_git_prompt_show_informative_status 'yes'
     set -g __fish_git_prompt_color_branch yellow
     # Status Chars
-    if $theme_powerline_fonts -eq yes
+    if test "$theme_powerline_fonts" = yes
         set -g __fish_git_prompt_char_dirtystate \u26A1 #'⚡'
         set -g __fish_git_prompt_char_stagedstate \u2192\u200A #'→'
         set -g __fish_git_prompt_char_stashstate \u21A9\u200A #'↩'
