@@ -129,7 +129,12 @@ function fish_prompt
     set -g git_dir (git rev-parse --git-dir 2>&-)
     if test -n "$git_dir"
         __freddyfishy_parse_git_branch
-        printf '%s ' (fish_git_prompt)
+
+        if test (functions -q fish_git_prompt)
+          printf '%s ' (fish_git_prompt)
+        else
+          printf '%s ' (__fish_git_prompt)
+        end
     end
     if [ (__freddyfishy_drush_alias_name) ]
         set -l drush_alias (__freddyfishy_drush_alias_name)
