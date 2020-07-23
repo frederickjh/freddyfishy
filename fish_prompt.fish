@@ -5,6 +5,13 @@ function __freddyfishy_drush_alias_name
         echo (command cat $TMPDIR/drush-env/drush-drupal-site-$pid)
     end
 end
+# VirtualFish environment prompt for Python virtualenv.
+#https://virtualfish.readthedocs.io/en/latest/install.html#customizing-your-fish-prompt
+function __freddyfishy_python_virtualenv
+  if set -q VIRTUAL_ENV
+    echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
+  end
+end
 # http://zogovic.com/post/37906589287/showing-git-branch-in-fish-shell-prompt
 # https://gist.github.com/davidmh/721241c7c34f841eed07
 # https://gist.github.com/diezguerra/4737141
