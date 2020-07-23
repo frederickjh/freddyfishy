@@ -9,7 +9,7 @@ end
 #https://virtualfish.readthedocs.io/en/latest/install.html#customizing-your-fish-prompt
 function __freddyfishy_python_virtualenv
   if set -q VIRTUAL_ENV
-    echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
+    echo -n -s " " (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal)
   end
 end
 # http://zogovic.com/post/37906589287/showing-git-branch-in-fish-shell-prompt
@@ -132,6 +132,10 @@ function fish_prompt
     __freddyfishy_host
     __freddyfishy_pwd
     __freddyfishy_closing_divider
+
+    if [ (__freddyfishy_python_virtualenv) ]
+        __freddyfishy_python_virtualenv
+    end
 
     set -g git_dir (git rev-parse --git-dir 2>&-)
     if test -n "$git_dir"
