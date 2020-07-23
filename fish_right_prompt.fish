@@ -66,7 +66,7 @@ function __freddyfishy_battery
 
     if test "$__fish_nim_prompt_has_acpi"
       # Is the battery full?
-      acpi -b 2> /dev/null | grep Full &> /dev/null
+      acpi -b 2> /dev/null | grep Full > /dev/null 2>&1
         set __freddyfishy_battery_is_full $status
       # Does the user always want to see the battery status even when full?
       if not set -q always_display_battery_status
@@ -88,7 +88,7 @@ function __freddyfishy_battery
                 set __freddyfishy_battery ""
             else if test $__freddyfishy_battery_percentage -ge 95 -a $__freddyfishy_battery_percentage -le 100
               # Is the battery charging? If so then show the percentage of charge.
-              acpi -b 2> /dev/null | grep Charging &> /dev/null
+              acpi -b 2> /dev/null | grep Charging > /dev/null 2>&1
               set __freddyfishy_battery_is_charging $status
               if test "$__freddyfishy_battery_is_charging" -eq 0
                 set __freddyfishy_battery " $__freddyfishy_battery_percentage%"
@@ -98,12 +98,12 @@ function __freddyfishy_battery
             end
         end
         # Is the AC power adapter off-line?
-        acpi -a 2> /dev/null | grep off &> /dev/null
+        acpi -a 2> /dev/null | grep off > /dev/null 2>&1
         if test $status -eq 0
             set __freddyfishy_battery_color red
         end
         # Is the AC power adapter on-line?
-        acpi -a 2> /dev/null | grep on &> /dev/null
+        acpi -a 2> /dev/null | grep on > /dev/null 2>&1
         if test $status -eq 0
             set __freddyfishy_battery_color normal
         end

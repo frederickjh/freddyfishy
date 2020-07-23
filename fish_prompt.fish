@@ -116,12 +116,14 @@ function fish_prompt
     set -g __fish_git_prompt_show_informative_status 'yes'
     set -g __fish_git_prompt_color_branch yellow
     # Status Chars
-    set -g __fish_git_prompt_char_dirtystate \u26A1 #'⚡'
-    set -g __fish_git_prompt_char_stagedstate \u2192\u200A #'→'
-    set -g __fish_git_prompt_char_stashstate \u21A9\u200A #'↩'
-    set -g __fish_git_prompt_char_upstream_ahead \u2191\u200A # '↑'
-    set -g __fish_git_prompt_char_upstream_behind \u2193\u200A #'↓'
-    set -g __fish_git_prompt_char_cleanstate \u2714\u200A #'✔'
+    if test "$theme_powerline_fonts" = yes
+        set -g __fish_git_prompt_char_dirtystate \u26A1 #'⚡'
+        set -g __fish_git_prompt_char_stagedstate \u2192\u200A #'→'
+        set -g __fish_git_prompt_char_stashstate \u21A9\u200A #'↩'
+        set -g __fish_git_prompt_char_upstream_ahead \u2191\u200A # '↑'
+        set -g __fish_git_prompt_char_upstream_behind \u2193\u200A #'↓'
+        set -g __fish_git_prompt_char_cleanstate \u2714\u200A #'✔'
+    end
 
     __freddyfishy_line1start
     __freddyfishy_opening_divider
@@ -134,7 +136,12 @@ function fish_prompt
     set -g git_dir (git rev-parse --git-dir 2>&-)
     if test -n "$git_dir"
         __freddyfishy_parse_git_branch
-        printf '%s ' (fish_git_prompt)
+
+        if test (functions -q fish_git_prompt)
+          printf '%s ' (fish_git_prompt)
+        else
+          printf '%s ' (__fish_git_prompt)
+        end
     end
     if [ (__freddyfishy_drush_alias_name) ]
         set -l drush_alias (__freddyfishy_drush_alias_name)
