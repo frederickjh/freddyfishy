@@ -18,8 +18,14 @@ omf install freddyfishy
 or
 
 ```fish
+fisher install topdroplabs/freddyfishy
+```
+for older versions of `fisher` (pre-4.0) use
+
+```fish
 fisher add topdroplabs/freddyfishy
 ```
+
 You will need a [Powerline-patched font](https://github.com/Lokaltog/powerline-fonts) for the icons to work. Or you can enable the compatibility fallback option to use plain ASCII characters:
 
     set -g theme_powerline_fonts no
