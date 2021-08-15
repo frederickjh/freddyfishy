@@ -76,7 +76,12 @@ function __freddyfishy_host
     else
         set_color -o cyan
     end
-    echo -n (hostname)
+    if [ (hostname) = "localhost" ]
+        set prompt_hostname (hostname -A | string split ' ' -f1)
+    else
+        set prompt_hostname (hostname)
+    end
+    echo -n $prompt_hostname
     set_color normal
 end
 function __freddyfishy_pwd
